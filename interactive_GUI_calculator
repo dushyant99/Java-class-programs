@@ -1,0 +1,70 @@
+
+package interactive._calculator;
+import javax.swing.*;
+
+
+public class Interactive_calculator {
+
+    
+    static int num1;
+    static int num2;
+    
+    static void parse()
+    {
+      String number1 = JOptionPane.showInputDialog("Enter 1st Number");
+   String number2 = JOptionPane.showInputDialog("Enter 2nd Number");
+   
+   num1 = Integer.parseInt(number1);
+   num2 = Integer.parseInt(number2);  
+    }
+    
+    public static void main(String[] args) {
+       boolean value = true; 
+       
+        while(value)
+        {
+            String option = JOptionPane.showInputDialog("what do you want to do:\n 1. Add \n 2. Subtract \n 3. Multiply \n 4. Divide \n 5. Exit");
+            int opt = Integer.parseInt(option);
+   
+   
+   
+   
+   int result = 0 ;
+  
+  
+   switch(opt)
+   {
+       case 1:
+           parse();
+           result = num1 + num2;
+           JOptionPane.showMessageDialog(null, "result = "+result);
+           break;
+       case 2:
+           parse();
+           result = num1 - num2;
+           JOptionPane.showMessageDialog(null, "result = "+result);
+           break;
+       case 3:
+           parse();
+           result = num1 * num2;
+           JOptionPane.showMessageDialog(null, "result = "+result);
+           break;
+       case 4:
+           parse();
+           result = num1/num2;
+           JOptionPane.showMessageDialog(null, "result = "+result);
+           break;
+       case 5:
+           value = false;
+           break;
+           
+       default:
+           JOptionPane.showMessageDialog(null, "Invalid Option \n ENTER AGAIN");
+           
+   }
+   
+  }
+    }
+    
+}
+
