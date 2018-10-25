@@ -1,0 +1,53 @@
+/*
+Main function code
+--------------------
+System.out.println("welcome to modular paradigm");
+        piggybank_modular.deposit(20000);
+        piggybank_modular.statement();
+        piggybank_modular.withdraw(5000);
+        piggybank_modular.statement();
+        piggybank_modular.deposit(-1000);
+        piggybank_modular.statement();
+        piggybank_modular.withdraw(-2000);
+        piggybank_modular.statement();
+ 
+
+*/
+
+
+package piggybank_procedural;
+
+public class piggybank_modular {
+    
+    
+    
+    static int balance;
+    static int lt;
+    
+    static void deposit(int v)
+    {
+        balance+=v;
+        lt = v;
+        System.out.println("you have successfully deposited "+v +" amount");
+        System.out.printf("\n you have deposited %d amount \n",v);
+       
+    }
+    
+    static void withdraw(int v)
+    {
+        if(balance >= v)
+        {
+            balance -= v;
+            lt = -v;
+            System.out.println("you have withdrawn "+ v +" amount");
+        }
+    }
+    
+    static void statement()
+    {
+        System.out.println("balance = "+balance);
+        System.out.println("last transaction = "+lt);
+    }
+    
+}
+
