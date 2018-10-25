@@ -1,0 +1,83 @@
+/*
+Main funciton code
+--------------------------
+
+interactive_PiggyBank.banking();
+
+*/
+
+
+
+package piggybank_procedural;
+import javax.swing.*;
+
+
+
+
+
+public class interactive_PiggyBank {
+    static int balance;
+    static int lt;
+    
+    static void deposit (int v)
+{
+        balance+=v;
+        lt = v;
+        System.out.println("you have successfully deposited "+v +" amount");
+        System.out.printf("\n you have deposited %d amount \n",v);
+}
+    
+   static void withdraw(int v)
+   {
+       if(balance >= v)
+        {
+            balance -= v;
+            lt = -v;
+            System.out.println("you have withdrawn "+ v +" amount");
+        }
+   }
+   
+   static void statement()
+   {
+       System.out.println("balance = "+balance);
+        System.out.println("last transaction = "+lt);
+   }
+   
+   static void banking()
+   {
+       boolean value = true;
+       int amt;
+       String amount;
+       while(value)
+       {
+           
+           String option = JOptionPane.showInputDialog("what do you want to do :\n 1: Deposit \n 2: Withdraw \n 3: Account statement \n 4: Exit");
+           int opt = Integer.parseInt(option);
+           
+          switch(opt)
+          {
+              case 1:
+                  amount = JOptionPane.showInputDialog("Enter amount");
+                  amt =Integer.parseInt(amount);
+                  deposit(amt);
+                  break;
+              
+              case 2:
+                  amount = JOptionPane.showInputDialog("Enter amount");
+                  amt =Integer.parseInt(amount);
+                  withdraw(amt);
+                  break;
+                  
+              case 3:
+                  statement();
+                  break;
+              case 4:
+                  value = false;
+                   break;
+                  
+          }
+       }
+   }
+    
+}
+
