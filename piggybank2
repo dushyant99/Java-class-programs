@@ -1,0 +1,50 @@
+/*
+main function code
+------------------------
+
+System.out.println("welcome to modular paradigm");
+        piggybank2.deposit(20000);
+        piggybank2.statement();
+        piggybank2.withdraw(5000);
+        piggybank2.statement();
+        piggybank2.deposit(-1000);
+        piggybank2.statement();
+        piggybank2.withdraw(-2000);
+        piggybank2.statement();
+
+*/
+
+package piggybank_procedural;
+
+
+public class piggybank2 {
+    
+    static int currentBalance;
+    static int previousBalance;
+    static int counter;
+    
+    static void deposit(int v)
+    {
+        previousBalance = currentBalance;
+        currentBalance += v;
+        System.out.println("you have successfully deposited " +v+" amount");
+        counter++;
+    }
+    
+    static void withdraw(int v)
+    {
+        previousBalance = currentBalance;
+        currentBalance -= v;
+        System.out.println("you have successfully withdrawn "+v+" amount");
+        counter++;
+    }
+    
+    static void statement()
+    {
+        System.out.println("the current balalnce = "+currentBalance);
+        System.out.println("the previous balance = "+previousBalance);
+        System.out.println("the total number of transactions = "+counter);
+    }
+    
+}
+
