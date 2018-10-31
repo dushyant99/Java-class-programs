@@ -1,0 +1,77 @@
+/*
+Main Program code
+-----------------------------
+
+PiggyBank_WT.deposit(10000);
+        
+        PiggyBank_WT.deposit(20000);
+        
+        PiggyBank_WT.withdraw(5000);
+        
+        PiggyBank_WT.withdraw(4000);
+        PiggyBank_WT.withdraw(3000);
+        PiggyBank_WT.withdraw(1000);
+        PiggyBank_WT.last5transactions();
+
+*/
+
+
+
+package piggybank_procedural;
+
+
+public class PiggyBank_WT {
+    
+    static int balance,lt,count;
+    static int [] a = new int [5];
+    
+     static void deposit (int v)
+{
+        balance+=v;
+        lt = v;
+        previousTransactions();
+        System.out.println("you have successfully deposited "+v +" amount");
+        
+}
+    
+   static void withdraw(int v)
+   {
+       if(balance >= v)
+        {
+            balance -= v;
+            lt = -v;
+            previousTransactions();
+            System.out.println("you have withdrawn "+ v +" amount");
+        }
+   }
+   
+   static void statement()
+   {
+       System.out.println("balance = "+balance);
+        System.out.println("last transaction = "+lt);
+   }
+   
+   static void last5transactions()
+   {
+       for (int v:a) {
+           System.out.println(v);
+           
+       }
+   }
+   
+   static void previousTransactions()
+   {
+       if ((count == 5)) {
+           for (int j = 0; j < a.length-1; j++) 
+               a[j] = a[j+1];
+            a[4] = lt;   
+           
+       }
+       else
+            a[count++] = lt;
+       
+       
+   }
+    
+}
+
