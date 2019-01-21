@@ -1,0 +1,158 @@
+/*  This is a stack program which has 3 stages in it.. 1st stage is simple stack,
+2nd stage has 2 constructors added to it, one default and one which takes input from user,
+3rd stage has some functions added to it besides the basic ones namely flush, store and load.
+Also includes the main function for this program and the interactive_stack one.   */
+
+
+
+
+package stack;
+import java.io.*;
+ 
+
+public class Stack {
+
+    int []  stk;
+    int top;
+    
+    Stack(int v)
+    {
+        stk = new int[v];
+        top = v;
+    }
+    
+    
+    Stack()
+    {
+        this(10);
+    }
+    
+    
+    int push(int v)
+    {
+        if(top == 0)
+        {
+            System.out.println("stack full");
+            return -1;
+        }
+        else
+        {
+            top--;
+            stk[top] = v;
+            return 0;
+        }
+    }
+    
+    int pop()
+    {
+        if(top == stk.length)
+        {
+            System.out.println("stack empty");
+            return -1;
+        }
+        else
+        {
+            int temp = stk[top];
+            top++;
+            return temp;
+        }
+    }
+    
+    int print()
+    {
+       if(top == stk.length)
+       {
+           System.out.println("stack empty");
+           return -1;
+       }
+       else
+       {
+           System.out.println("printing stack");
+           for (int i = top; i < stk.length; i++) 
+               System.out.println(stk[i]);
+            
+           return 0;   
+       }
+    }
+    
+    
+    void peek()
+    {
+        System.out.println("the top element of the stack = "+stk[top]);
+    }
+    
+    
+    void flush()
+    {
+        this.top = stk.length;
+    }
+    
+    void store() throws IOException
+    {
+        PrintWriter fos = new PrintWriter(
+                new BufferedWriter(
+                        new FileWriter("/home/lucky/Documents/stack/output.txt")
+                ), true
+        );
+        
+        for (int i = stk.length-1; i >= top; i--) {
+            fos.println(stk[i]);
+        }
+    }
+    
+    void load() throws IOException
+    {
+        this.flush();
+        //File file = new File("/home/lucky/Documents/stack/output.txt");
+        
+        BufferedReader br = new BufferedReader(new FileReader("/home/lucky/Documents/stack/output.txt"));
+        
+        String s;
+        //int i=stk.length;
+        while((s = br.readLine()) != null)
+        {
+            this.top--;
+            this.stk[top] = Integer.parseInt(s);
+        }   
+    }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) throws IOException {
+
+        /*   Stack s1 = new Stack(20);
+        s1.push(10);
+        s1.push(20);
+        s1.push(30);
+        s1.push(40);
+        s1.print();
+        int i = s1.pop();
+        System.out.println("the value getting popped = "+i);
+        s1.print();
+        Stack s2 = new Stack();
+        System.out.println("new stack s2 created");
+        s2.push(100);
+        s2.push(200);
+        s2.print();
+        int j = s2.pop();
+        System.out.println("the deleted element  = "+j);
+        s2.print();dd
+        s1.peek();
+        s1.push(65);
+        s1.push(94);
+        s1.print();
+        s1.store();
+        s2.load();
+        s2.print();
+        s2.peek();   */
+
+
+        interactive_stack s1 = new interactive_stack();
+        s1.implementation();
+        
+    }
+    
+    
+}
+
