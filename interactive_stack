@@ -1,0 +1,171 @@
+/* Same funcitons as the stack program in this repository, just that this program 
+is made interactive using JOptionPane class functions, nothing much has changed
+except for the print funciton where it now uses Arrays.toString funciton from 
+util.Arrays class to print the stack onto the dialog box    */
+
+package stack;
+import javax.swing.*;
+import java.io.*;
+import java.util.Arrays;
+import java.util.List;
+
+
+
+public class interactive_stack {
+    int [] stk;
+    int top;
+    
+    interactive_stack(int v)
+    {
+        stk = new int[v];
+        top = v;
+    }
+    
+    interactive_stack()
+    {
+        this(10);
+    }
+    
+    int push(int v)
+    {
+        if(top == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Stack is full");
+            return -1;
+        }
+        else
+        {
+            top--;
+            stk[top] = v;
+            return 0;
+        }
+    }
+    
+    int pop()
+    {
+        if(top == stk.length)
+        {
+            JOptionPane.showMessageDialog(null,"stack is empty");
+            return -1;
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "the element getting popped is "+stk[top]);
+            stk[top] = 0;
+            top++;
+            return 0;
+        }
+    }
+    
+    int print()
+    {
+        if(top == stk.length)
+         {
+            JOptionPane.showMessageDialog(null,"stack is empty");
+            return -1;
+        }
+        else
+        {
+            //for (int i = top; i < stk.length; i++) 
+               String l = Arrays.toString(this.stk);
+               JOptionPane.showMessageDialog(null,l );
+            
+                
+            return 0;
+        }
+    }
+    
+    void peek()
+    {
+        JOptionPane.showMessageDialog(null, "The element at the top of the stack is "+stk[top]);
+    }
+    
+    void flush()
+    {
+        this.top = this.stk.length;
+    }
+    
+    
+    void store() throws IOException
+    {
+        PrintWriter fos = new PrintWriter(
+                new BufferedWriter(
+                        new FileWriter("/home/lucky/Documents/stack/output2.txt")
+                ), true
+        );
+        
+        for (int i = stk.length-1; i >= top; i--) {
+            fos.println(stk[i]);
+        }
+    }
+    
+    
+    void load() throws IOException
+    {
+        this.flush();
+        
+        BufferedReader br = new BufferedReader(new FileReader("/home/lucky/Documents/stack/output2.txt")); 
+        
+        String s;
+        
+        while((s = br.readLine()) != null )
+        {
+            this.top--;
+            this.stk[top] = Integer.parseInt(s);
+        }
+        
+    }
+    
+    void implementation() throws IOException
+    {
+        JOptionPane.showMessageDialog(null, "Welcome to Stack");
+        boolean value = true;
+        int opt;
+        String s;
+        
+        while(value)
+        {
+        s = JOptionPane.showInputDialog("What do you want to do:"+ "\n"+ "1. Push" +"\n"+"2. Pop"+ "\n"+ "3. Print"+ "\n"+ "4. Peek"+ "\n"+ "5. Flush"+ "\n"+ "6. Store "+ "\n"+ "7. Load"+"\n"+"8. Exit");
+        opt = Integer.parseInt(s);
+        
+        
+        switch(opt)
+        {
+            case 1:
+                String i = JOptionPane.showInputDialog(null, "Enter the value");
+                int j = Integer.parseInt(i);
+                this.push(j);
+                break;
+            
+            case 2:
+                this.pop();
+                break;
+                
+            case 3:
+                this.print();
+                break;
+                
+            case 4:    
+                this.peek();
+                break;
+                
+            case 5:
+                this.flush();
+                break;
+            
+            case 6:
+                this.store();
+                break;
+                
+            case 7:
+                this.load();
+                break;
+                
+            case 8:
+                value = false;
+                break;
+        }
+        }
+    }
+}
+
