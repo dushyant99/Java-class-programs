@@ -164,6 +164,8 @@ public class interactive_stack {
             case 8:
                 value = false;
                 break;
+
+            default: JOptionPane.showMesageDialog(null,"Wrong choice dude");
         }
         }
     }
