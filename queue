@@ -1,0 +1,138 @@
+/*  This is a queue program which has 3 stages in it.. 1st stage is simple queue,
+2nd stage has 2 constructors added to it, one default and one which takes input from user,
+3rd stage has some functions added to it besides the basic ones namely flush, store and load.
+Also includes the main function for this program */
+
+
+
+package hello;
+
+import java.io.IOException;
+import java.io.*;
+import java.util.Arrays;
+
+
+public class queueConstructors {
+    int front = -1;
+    int rear = -1;
+    int []a;
+    
+    
+
+    queueConstructors(int v)
+    {
+        a = new int[v];
+    }
+    
+    
+
+    queueConstructors()
+    {
+        a = new int[20];
+    }
+    
+    
+
+    void enqueue(int x)
+    {
+       if(rear == a.length || front > rear)
+            System.out.println("queue is full");
+       else
+       {
+           if(front == -1)
+               front++;
+        a[++rear] = x;   
+       }
+           
+    }
+    
+    
+
+    void dequeue()
+    {
+        if(front == -1)
+            System.out.println("queue empty");
+        else
+        {
+            System.out.println("the element getting deleted is "+a[front]);
+            a[front]  = 0;
+            front++;
+        }
+    }
+    
+    
+    void print()
+    {
+        System.out.println("the queue is as follows: ");
+        //for(int i=front;i<=rear;i++)
+          //  System.out.println(a[i]);
+          System.out.println(Arrays.toString(a));
+    }
+    
+
+
+    void peek()
+    {
+        System.out.println("Element at the front of the queue = "+a[front]);
+        
+    }
+    
+
+
+    void flush()
+    {
+        this.front = -1;
+        this.rear = -1;
+    }
+    
+    void store() throws IOException
+    {
+        PrintWriter fos = new PrintWriter(
+                new BufferedWriter(
+                        new FileWriter("/home/lucky/Documents/queue/output.txt")
+                ), true
+        );   
+        for(int v:a)
+            fos.println(v);
+        
+    }
+    
+    void load() throws IOException
+    {
+        this.flush();
+        
+        BufferedReader br = new BufferedReader(new FileReader("/home/lucky/Documents/queue/output.txt")); 
+        
+        String s;
+        
+        while((s = br.readLine())!= null)
+        {
+            this.a[++rear] = Integer.parseInt(s);
+        }
+    }
+    
+    
+}
+
+
+
+/* Main Program */
+
+
+queueConstructors q = new queueConstructors();
+        q.enqueue(10);
+        q.enqueue(34);
+        q.enqueue(61);
+        q.print();
+        //q.store();
+        
+        queueConstructors q1 = new queueConstructors(20);
+        q1.enqueue(56);
+        q1.enqueue(93);
+        //q1.enqueue(45);
+        q1.print();
+        q1.store();
+        q.load();
+        q.print();
+
+
